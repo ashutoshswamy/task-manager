@@ -62,11 +62,11 @@ export async function proxy(request: NextRequest) {
   if (user && !request.nextUrl.pathname.startsWith("/update-password")) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("must_change_password")
+      .select("must_change_password, role")
       .eq("id", user.id)
       .single()
 
-    if (profile?.must_change_password) {
+    if (profile?.must_change_password && profile.role !== "admin") {
       const url = request.nextUrl.clone()
       url.pathname = "/update-password"
       url.search = ""

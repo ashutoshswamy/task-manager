@@ -35,7 +35,7 @@ export async function updateUserRole(
 
   const { error } = await supabase
     .from("profiles")
-    .update({ role })
+    .update(role === "admin" ? { role, must_change_password: false } : { role })
     .eq("id", userId)
   if (error) return { error: error.message }
 
