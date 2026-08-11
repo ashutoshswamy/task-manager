@@ -88,8 +88,8 @@ export function SectorsTopicsManager({
         <h3 className="text-sm font-medium">Sectors</h3>
         <div className="grid gap-2">
           {sectors.map((s) => (
-            <div key={s.id} className="flex items-center justify-between text-sm">
-              <span>{s.name}</span>
+            <div key={s.id} className="flex min-w-0 items-center justify-between gap-2 text-sm">
+              <span className="truncate">{s.name}</span>
               <Button
                 variant="ghost"
                 size="icon-sm"
@@ -117,8 +117,8 @@ export function SectorsTopicsManager({
         <h3 className="text-sm font-medium">Topics</h3>
         <div className="grid gap-2">
           {topics.map((t) => (
-            <div key={t.id} className="flex items-center justify-between text-sm">
-              <span>
+            <div key={t.id} className="flex min-w-0 items-center justify-between gap-2 text-sm">
+              <span className="truncate">
                 {t.name}{" "}
                 <span className="text-xs text-muted-foreground">
                   ({sectors.find((s) => s.id === t.sector_id)?.name})

@@ -37,57 +37,59 @@ export function MonthGrid({
   }
 
   return (
-    <div className="grid grid-cols-7 gap-px overflow-hidden rounded-lg border bg-border">
-      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-        <div
-          key={d}
-          className="bg-muted px-2 py-1 text-center text-xs font-medium text-muted-foreground"
-        >
-          {d}
-        </div>
-      ))}
-      {days.map((day) => {
-        const dateStr = format(day, "yyyy-MM-dd")
-        const dayEvents = eventsByDate.get(dateStr) ?? []
-        return (
+    <div className="overflow-x-auto rounded-lg border">
+      <div className="grid min-w-[640px] grid-cols-7 gap-px overflow-hidden bg-border">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
           <div
-            key={dateStr}
-            className={cn(
-              "min-h-24 bg-background p-1.5",
-              !isSameMonth(day, month) && "bg-muted/30 text-muted-foreground"
-            )}
+            key={d}
+            className="bg-muted px-2 py-1 text-center text-xs font-medium text-muted-foreground"
           >
-            <span
+            {d}
+          </div>
+        ))}
+        {days.map((day) => {
+          const dateStr = format(day, "yyyy-MM-dd")
+          const dayEvents = eventsByDate.get(dateStr) ?? []
+          return (
+            <div
+              key={dateStr}
               className={cn(
-                "text-xs",
-                isToday(day) &&
-                  "inline-flex size-5 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground"
+                "min-h-24 bg-background p-1.5",
+                !isSameMonth(day, month) && "bg-muted/30 text-muted-foreground"
               )}
             >
-              {format(day, "d")}
-            </span>
-            <div className="mt-1 grid gap-0.5">
-              {dayEvents.slice(0, 3).map((e) => (
-                <Link
-                  key={e.id}
-                  href={e.href}
-                  className={cn(
-                    "truncate rounded px-1 py-0.5 text-[11px]",
-                    typeStyles[e.type]
-                  )}
-                >
-                  {e.title}
-                </Link>
-              ))}
-              {dayEvents.length > 3 && (
-                <span className="text-[11px] text-muted-foreground">
-                  +{dayEvents.length - 3} more
-                </span>
-              )}
+              <span
+                className={cn(
+                  "text-xs",
+                  isToday(day) &&
+                    "inline-flex size-5 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground"
+                )}
+              >
+                {format(day, "d")}
+              </span>
+              <div className="mt-1 grid gap-0.5">
+                {dayEvents.slice(0, 3).map((e) => (
+                  <Link
+                    key={e.id}
+                    href={e.href}
+                    className={cn(
+                      "truncate rounded px-1 py-0.5 text-[11px]",
+                      typeStyles[e.type]
+                    )}
+                  >
+                    {e.title}
+                  </Link>
+                ))}
+                {dayEvents.length > 3 && (
+                  <span className="text-[11px] text-muted-foreground">
+                    +{dayEvents.length - 3} more
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }

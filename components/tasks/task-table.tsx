@@ -94,7 +94,7 @@ export function TaskTable({
   return (
     <div className="grid gap-3">
       {showBulkActions && selected.length > 0 && (
-        <div className="flex items-center gap-2 rounded-md border bg-muted/40 px-3 py-2">
+        <div className="flex flex-wrap items-center gap-2 rounded-md border bg-muted/40 px-3 py-2">
           <span className="text-sm">{selected.length} selected</span>
           <Select
             items={STATUS_LABELS}
