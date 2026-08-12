@@ -13,6 +13,7 @@ export const taskSchema = z.object({
   nextFollowUpDate: z.string().optional(),
   remarks: z.string().optional(),
   assigneeIds: z.array(z.string().uuid()),
+  externalAssignee: z.string().optional(),
 })
 export type TaskInput = z.infer<typeof taskSchema>
 

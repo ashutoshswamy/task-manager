@@ -64,6 +64,7 @@ export function TaskForm({
       nextFollowUpDate: "",
       remarks: "",
       assigneeIds: [],
+      externalAssignee: "",
       ...defaultValues,
     },
   })
@@ -211,6 +212,20 @@ export function TaskForm({
             onChange={(ids) => form.setValue("assigneeIds", ids)}
           />
         </FormItem>
+
+        <FormField
+          control={form.control}
+          name="externalAssignee"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Other assignee (optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="Name of someone outside the team" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

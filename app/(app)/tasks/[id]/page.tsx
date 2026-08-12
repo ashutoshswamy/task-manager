@@ -72,6 +72,7 @@ export default async function TaskDetailPage({
               assigneeIds: task.task_assignees.map(
                 (a: { user: { id: string } }) => a.user.id
               ),
+              externalAssignee: task.external_assignee ?? "",
             }}
             sectors={sectors}
             topics={topics}
@@ -85,11 +86,12 @@ export default async function TaskDetailPage({
         <div>
           <p className="text-muted-foreground">Assigned To</p>
           <p>
-            {task.task_assignees.length
-              ? task.task_assignees
-                  .map((a: { user: { full_name: string } }) => a.user.full_name)
-                  .join(", ")
-              : "Unassigned"}
+            {[
+              ...task.task_assignees.map(
+                (a: { user: { full_name: string } }) => a.user.full_name
+              ),
+              ...(task.external_assignee ? [task.external_assignee] : []),
+            ].join(", ") || "Unassigned"}
           </p>
         </div>
         <div>

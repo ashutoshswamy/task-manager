@@ -34,7 +34,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
         className="w-56"
       />
       <Select
-        items={{ all: "All statuses", ...STATUS_LABELS }}
+        items={{ all: "Status", ...STATUS_LABELS }}
         value={searchParams.get("status") ?? "all"}
         onValueChange={(v) => setParam("status", v === "all" ? null : v)}
       >
@@ -42,7 +42,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All statuses</SelectItem>
+          <SelectItem value="all">Status</SelectItem>
           <SelectItem value="not_started">Not Started</SelectItem>
           <SelectItem value="in_progress">In Progress</SelectItem>
           <SelectItem value="on_hold">On Hold</SelectItem>
@@ -50,7 +50,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
         </SelectContent>
       </Select>
       <Select
-        items={{ all: "All priorities", ...PRIORITY_LABELS }}
+        items={{ all: "Priority", ...PRIORITY_LABELS }}
         value={searchParams.get("priority") ?? "all"}
         onValueChange={(v) => setParam("priority", v === "all" ? null : v)}
       >
@@ -58,7 +58,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
           <SelectValue placeholder="Priority" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All priorities</SelectItem>
+          <SelectItem value="all">Priority</SelectItem>
           <SelectItem value="high">High</SelectItem>
           <SelectItem value="medium">Medium</SelectItem>
           <SelectItem value="low">Low</SelectItem>
@@ -66,7 +66,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
       </Select>
       <Select
         items={{
-          all: "All sectors",
+          all: "Sector",
           ...Object.fromEntries(sectors.map((s) => [s.id, s.name])),
         }}
         value={searchParams.get("sectorId") ?? "all"}
@@ -76,7 +76,7 @@ export function TaskFilters({ sectors }: { sectors: Sector[] }) {
           <SelectValue placeholder="Sector" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All sectors</SelectItem>
+          <SelectItem value="all">Sector</SelectItem>
           {sectors.map((s) => (
             <SelectItem key={s.id} value={s.id}>
               {s.name}

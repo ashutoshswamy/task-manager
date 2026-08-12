@@ -43,6 +43,7 @@ function toRow(input: TaskInput) {
     next_action: input.nextAction || null,
     next_follow_up_date: input.nextFollowUpDate || null,
     remarks: input.remarks || null,
+    external_assignee: input.externalAssignee || null,
   }
 }
 
